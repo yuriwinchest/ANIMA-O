@@ -1,0 +1,99 @@
+.item {
+    display: none; /* Oculta o item por padrão */
+    width: 100%; /* Ocupa 100% da largura do contêiner pai */
+    height: 100%; /* Ocupa 100% da altura do contêiner pai */
+    position: absolute; /* Posiciona o item de forma absoluta em relação ao contêiner pai */
+    top: 0; /* Alinha o item ao topo do contêiner pai */
+    left: 0; /* Alinha o item à esquerda do contêiner pai */
+    overflow: hidden; /* Esconde qualquer conteúdo que transborde do item */
+    background-color: var(--background); /* Aplica a cor de fundo definida pela variável CSS */
+    z-index: 1; /* Garante que os itens fiquem abaixo dos botões */
+    transition: opacity 0.5s ease-in-out; /* Suaviza a transição de opacidade */
+}
+
+.item.active {
+    display: block; /* Exibe o item quando a classe 'active' é aplicada */
+    opacity: 1; /* Garante que o item ativo seja totalmente opaco */
+    z-index: 2; /* Eleva o item ativo acima dos outros */
+}
+
+.item .title {
+    font-size: 5rem; /* Define o tamanho da fonte do título */
+    color: white; /* Define a cor do texto do título */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Define a família de fontes */
+    font-weight: bold; /* Aplica negrito ao texto */
+    text-align: center; /* Centraliza o texto horizontalmente */
+    position: absolute; /* Posiciona o título de forma absoluta em relação ao contêiner pai */
+    left: 50%; /* Centraliza o título horizontalmente */
+    top: 5%; /* Centraliza o título verticalmente */
+    transform: translate(-50%, -50%); /* Ajusta a posição do título para que fique perfeitamente centralizado */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra ao texto para maior legibilidade */
+    white-space: nowrap; /* Impede que o texto quebre em várias linhas */
+}
+
+.item .fruit {
+    width: 100%;
+    position: absolute;
+    top: -20%;
+    z-index: 3;
+}
+
+.item .refrir {
+    z-index: 2;
+    width: 600px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#prev, #next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: rgba(238, 233, 233, 0.6); /* Cor de fundo semi-transparente */
+    border: 1px solid rgba(238, 233, 233, 0.6); /* Borda combinando com o fundo */
+    color: #000;
+    font-size: x-large;
+    font-family: monospace;
+    cursor: pointer;
+    z-index: 4;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transição suave para o hover */
+}
+
+#prev:hover, #next:hover {
+    background-color: rgba(238, 233, 233, 0.9); /* Escurece um pouco a cor de fundo no hover */
+    transform: translateY(-50%) scale(1.1); /* Leve aumento do botão no hover */
+}
+
+#prev {
+    left: 30px;
+}
+
+#next {
+    right: 30px;
+}
+
+@keyframes toActive {
+    from {
+        top: 100%; /* O elemento começa fora da tela, na parte inferior */
+        opacity: 0; /* O elemento começa invisível */
+        transform: scale(0.8); /* O elemento começa com um tamanho menor */
+    }
+    to {
+        top: 0; /* O elemento termina na posição normal, no topo do seu contêiner */
+        opacity: 1; /* O elemento termina totalmente visível */
+        transform: scale(1); /* O elemento termina com o tamanho normal */
+    }
+}
+
+.item.active img.fruit {
+    animation: toActive 0.5s ease-in-out 1;
+}
+
+.item.active .title {
+    animation: toActive 0.5s ease-in-out 1;
+}
